@@ -3,7 +3,7 @@ def get_user(num):
     while count < (len(content) / 3):
         for line in content:
             if ("U" + str(num) + ": ") in line:
-                return line.strip("UPS0123456789: ")
+                return get_data(line)
         count += 1
 
 
@@ -12,7 +12,7 @@ def get_pass(num):
     while count < (len(content) / 3):
         for line in content:
             if ("P" + str(num) + ": ") in line:
-                return line.strip("UPS0123456789: ")
+                return get_data(line)
         count += 1
 
 
@@ -21,9 +21,14 @@ def get_secret(num):
     while count < (len(content) / 3):
         for line in content:
             if ("S" + str(num) + ": ") in line:
-                return line.strip("UPS0123456789: ")
+                return get_data(line)
         count += 1
 
+
+def get_data(string):
+    string = (string.strip("UPS0123456789:")).strip()
+    return string
+    
 
 file = open("accounts", "r")
 content = file.readlines()
