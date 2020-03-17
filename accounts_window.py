@@ -6,6 +6,13 @@ conn = accounts_connector.connector()
 root = Tk()
 root.title("Epic Games Account")
 
+def save():
+    conn.save_acc(username.get(), password.get(), "")
+    username.set=''
+    password.set=''
+    email_input.delete(0, 100)
+    password_input.delete(0, 100)
+
 # String vars
 username = StringVar()
 password = StringVar()
@@ -13,7 +20,7 @@ password = StringVar()
 # Initializing
 email_input = Entry(root, textvariable = username)
 password_input = Entry (root, show="*", textvariable = password)
-submit_button = Button(root, text="Save!")
+submit_button = Button(root, text="Save!", command=save)
 
 # Account entries:
 Label(root, text="ACCOUNTS").grid(column = 0, row = 0)
