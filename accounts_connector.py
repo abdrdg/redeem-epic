@@ -3,7 +3,8 @@ class connector:
     def __init__(self):
         file = open("accounts", "r")
         self.content = file.readlines()
-        self.user_len = (len(self.content) / 3)
+        self.total_lines = len(self.content)
+        self.user_len = (self.total_lines / 3)
         self.emptyLine = int(self.user_len)
         print(self.user_len)
         file.close()
@@ -44,4 +45,5 @@ class connector:
         file.write("\nS" + str(self.emptyLine) + ": " + secret)
 
         file.close()
+
         self.emptyLine += 1
