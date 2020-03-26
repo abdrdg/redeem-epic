@@ -1,10 +1,12 @@
 class connector:
-
     def __init__(self):
+        self.refresh()
 
+    def refresh(self):
         file = open("accounts", "r")
         self.content = file.readlines()
-        self.user_len = (len(self.content) / 3)
+        self.totalLines = len(self.content)
+        self.user_len = (self.totalLines / 3)
         print(self.user_len)
         file.close()
 
@@ -12,26 +14,21 @@ class connector:
         string = (string.strip("UPS0123456789:")).strip()
         return string
 
-    def get_user(self, num):
-        count = 0
-        while count < (self.user_len):
-            for line in self.content:
-                if ("U" + str(num) + ": ") in line:
-                    return self.get_data(line)
-            count += 1
+    def get(self, type, index):
+        self.refresh()
 
-    def get_pass(self, num):
-        count = 0
-        while count < (self.user_len):
-            for line in self.content:
-                if ("P" + str(num) + ": ") in line:
-                    return self.get_data(line)
-            count += 1
+        type = type.upper()
+        if (type == "U" or type == "P" or type == "S"):
+            count = 0
+            while count < (self.user_len):
+                for line in self.content:
+                    if (type + str(index) + ": ") in line:
+                        return self.get_data(line)
+                count += 1
+        else:
+            print("Invalid get type.")
 
-    def get_secret(self, num):
-        count = 0
-        while count < (self.user_len):
-            for line in self.content:
-                if ("S" + str(num) + ": ") in line:
-                    return self.get_data(line)
-            count += 1
+
+    def save_user(self, username, password, secret=""):
+        file = open("accounts", "a")
+        file.write()
