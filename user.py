@@ -39,4 +39,5 @@ class User:
 
 
     def save_user(self):
-        
+        conn = accounts_connector.connector()
+        conn.save_user(self.username, self.password, self.secret)
