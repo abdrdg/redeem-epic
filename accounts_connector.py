@@ -6,7 +6,7 @@ class connector:
         file = open("accounts", "r")
         self.content = file.readlines()
         self.totalLines = len(self.content)
-        self.user_len = (self.totalLines / 3)
+        self.user_len = int(self.totalLines / 3)
         print(self.user_len)
         file.close()
 
@@ -30,5 +30,9 @@ class connector:
 
 
     def save_user(self, username, password, secret=""):
-        file = open("accounts", "a")
-        file.write()
+        file = open("accounts", 'a')
+        file.write("\nU" + str(self.emptyLine) + ": " + username)
+        file.write("\nP" + str(self.emptyLine) + ": " + password)
+        file.write("\nS" + str(self.emptyLine) + ": " + secret)
+        file.close()
+        self.refresh()
