@@ -9,12 +9,12 @@ class User:
         self.password = password
         self.secret = secret
 
+
+    def login(self):
         self.browser = webdriver.Chrome("C:/Chromedriver/chromedriver.exe")
         self.browser.get("https://www.epicgames.com/login")
         self.browser.implicitly_wait(1000)
 
-
-    def login(self):
         print("Signing in " + self.username + "...")
         time.sleep(8)
 
@@ -27,7 +27,7 @@ class User:
         login_button.click()
         time.sleep(8)
 
-        if self.secret == "":
+        if self.secret != "":
             self.browser.get(self.browser.current_url)
             code_field = self.browser.find_element_by_xpath('//*[@id="code"]')
             continue_button = self.browser.find_element_by_xpath('//form/div[3]/button[2]')
@@ -41,3 +41,6 @@ class User:
     def save_user(self):
         conn = accounts_connector.connector()
         conn.save_user(self.username, self.password, self.secret)
+
+    def redeem(self):
+        self.login()
