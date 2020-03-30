@@ -24,17 +24,19 @@ class User:
 
         email_field.send_keys(self.username)
         password_field.send_keys(self.password)
+        time.sleep(2)
         login_button.click()
-        time.sleep(8)
 
-        if self.secret != "":
+        time.sleep(8)
+    
+        if (self.secret != " "):
             self.browser.get(self.browser.current_url)
             code_field = self.browser.find_element_by_xpath('//*[@id="code"]')
             continue_button = self.browser.find_element_by_xpath('//form/div[3]/button[2]')
             totp = pyotp.TOTP(self.secret)
             code_field.send_keys(totp.now())
             continue_button.click()
-
+    
         print("Sign-in complete!")
 
 
@@ -42,5 +44,7 @@ class User:
         conn = accounts_connector.connector()
         conn.save_user(self.username, self.password, self.secret)
 
+
     def redeem(self):
         self.login()
+        input()

@@ -22,6 +22,7 @@ class App:
         if choice != 0:
             choice -= 1
             acc = user.User(conn.get("U", choice), conn.get("P", choice), conn.get("S", choice))
+            print(conn.get("U", choice), conn.get("P", choice), conn.get("S", choice))
             acc.redeem()
         
         elif choice == 0:
@@ -40,7 +41,6 @@ class App:
                 
                 print("Is this correct?\n" + hr + "\n" + username)
                 correct = input("Is this correct [Y/N]: ").upper()
-
             if correct == "Y":
                 print("Saving...")
                 acc = user.User(username, password, secret)
