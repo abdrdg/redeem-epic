@@ -28,7 +28,7 @@ class User:
         login_button.click()
 
         time.sleep(8)
-    
+        
         if (self.secret != " "):
             self.browser.get(self.browser.current_url)
             code_field = self.browser.find_element_by_xpath('//*[@id="code"]')
@@ -36,7 +36,7 @@ class User:
             totp = pyotp.TOTP(self.secret)
             code_field.send_keys(totp.now())
             continue_button.click()
-    
+
         print("Sign-in complete!")
 
 
